@@ -5,6 +5,7 @@ using Zengenti.Contensis.Delivery;
 
 namespace RazorPageLeifDemoWebsite.Helpers;
 
+//Add Enum File Extension
 public enum FILE_Extension
 {
     [Display(Name = "aspx page", Description = ".aspx")]
@@ -40,7 +41,7 @@ public static class EnumerationExtension
 
 public static class StringUtility
 {
-   
+
     public static string? RemoveFileExtension(this string path, FILE_Extension extensiontype)
     {
         string description = extensiontype.Description();
