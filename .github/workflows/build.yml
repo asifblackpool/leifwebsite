@@ -50,6 +50,7 @@ jobs:
         shell: bash
   deploy:
     name: Push block to Contensis
+    permissions: write-all
     runs-on: ubuntu-latest
     needs: build-latest
     steps:
