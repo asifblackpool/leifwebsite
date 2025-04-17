@@ -63,7 +63,7 @@ jobs:
         id: push-block
         uses: contensis/block-push@v1
         with:
-          block-id: demo-website
+          block-id: leifwebsite
           alias: blackpool
           project-id: demoWebsite
           client-id: ${{ env.CONTENSIS_CLIENT_ID }}
