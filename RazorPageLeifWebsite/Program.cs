@@ -18,7 +18,7 @@ builder.Services
             //options.Conventions.AddPageRoute("/Blog/BlogPost", "/");
             options.Conventions.AddPageRoute("/Blog/BlogPost", Constants.LEIF_HOME_PATH + "blog/{slug}.aspx");
             options.Conventions.Add(new GlobalHeaderPageApplicationModelConvention());
-        
+
         }
     );
 
@@ -45,7 +45,7 @@ app.UseRewriter(new RewriteOptions()
     .AddRedirect(@"^home$", string.Format("{0}{1}.aspx", Constants.LEIF_HOME_PATH, "home"), statusCode: 301)
     .AddRedirect(@"^home$", string.Format("{0}{1}.aspx", Constants.LEIF_HOME_PATH, "blog"), statusCode: 301));
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
 app.UseHttpLogging();
