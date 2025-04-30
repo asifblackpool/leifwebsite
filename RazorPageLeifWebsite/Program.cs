@@ -1,3 +1,6 @@
+using Microsoft.AspNetCore.Rewrite;
+using RazorPageLeifDemoWebsite.Global;
+using RazorPageLeifDemoWebsite.Helpers;
 using Zengenti.Contensis.Delivery;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -23,6 +26,16 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
+
+app.UseRewriter(new RewriteOptions()
+    .AddRewrite(RegExUtility.UrlPath(Constants.LEIF_HOME_PATH, "home"), "Home/Index", skipRemainingRules: true)
+    .AddRewrite(RegExUtility.UrlPath(Constants.LEIF_HOME_PATH, "blog"), "Blog/Index", skipRemainingRules: true)
+    .AddRewrite(@"^blog\.aspx/(\d+)$", "Blog/$1", skipRemainingRules: true));
+
+
+app.UseRewriter(new RewriteOptions()
+    .AddRedirect(@"^home$", string.Format("{0}{1}.aspx", Constants.LEIF_HOME_PATH, "home"), statusCode: 301)
+    .AddRedirect(@"^home$", string.Format("{0}{1}.aspx", Constants.LEIF_HOME_PATH, "blog"), statusCode: 301));
 
 // app.UseHttpsRedirection(); NO SUPPORT FOR .NET 9,0 
 app.UseStaticFiles();
